@@ -1,0 +1,20 @@
+<!doctype html>
+<html lang="en">
+  <head><meta charset="utf-8"><title>End Tiers</title></head>
+  <body>
+    <script>
+      (function () {
+        var parts = location.pathname.split('/').filter(Boolean);
+        var knownRoutes = ['rankings', 'admin', 'player'];
+        var base = '';
+        if (location.hostname.endsWith('github.io') && parts.length && knownRoutes.indexOf(parts[0]) === -1) {
+          base = '/' + parts.shift();
+        }
+        var route = '/' + parts.join('/');
+        var query = location.search || '';
+        var hash = location.hash || '';
+        location.replace(base + '/?ghp=' + encodeURIComponent(route + query + hash));
+      }());
+    </script>
+  </body>
+</html>
